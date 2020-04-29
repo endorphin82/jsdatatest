@@ -4,23 +4,43 @@
   "description": "test pattern adapter",
   "main": "index.js",
   "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "bson": "^4.0.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
+    "js-data": "^4.0.0-beta.4",
+    "js-data-mongodb": "^2.0.0",
+    "mongodb": "^3.5.7",
     "mongoose": "^5.9.10",
     "nodemon": "^2.0.3",
     "pg": "^8.0.3",
-    "sequelize": "^5.21.7"
+    "sequelize": "^5.21.7",
+    "webpack": "^4.43.0",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "webpack-cli": "^3.3.11"
   },
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:local": "nodemon -r dotenv/config server/index.js dotenv_config_path=dev.local.env",
     "dev:global": "nodemon -r dotenv/config server/index.js dotenv_config_path=dev.global.env",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "devbuild": "npm-run-all -l -p npm run dev:build:server & npm run dev:build:client & npm run dev:server",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:build:server": "webpack --config webpack.server.js --watch",
+    "dev:build:client": "webpack --config webpack.client.js --watch",
+    "dev:server": "nodemon --watch build --exec node ./build/bundle.js"
   },
   "repository": {
     "type": "git",
