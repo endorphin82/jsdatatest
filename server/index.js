@@ -1,10 +1,12 @@
-import express from "express";
-// import {store} from './store';
-// import {adapter} from '../adapters/adapter'
-import {MongoDBAdapter} from "js-data-mongodb"
-
+import express from 'express';
+import {router} from "./routes/posts";
+import {logData} from "./middleware";
 const app = express();
-console.log("app")
+
+app.use([logData])
+
+app.route('/posts', router)
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
