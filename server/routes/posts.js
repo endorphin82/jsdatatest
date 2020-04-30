@@ -1,23 +1,33 @@
-import express from 'express';
-export const router = express.Router();
+import express from "express";
+import {store} from '../store'
 
-// define the home page route
-router.get('/', function(req, res) {
-    res.send('Birds home page');
-});
-// define the about route
-router.get('/about', function(req, res) {
-    res.send('About birds');
-});
-// app.post('/', async function (req, res) {
-//     res.send(await store.create('post', req.body));
+const routerPosts = express.Router();
+
+routerPosts.get('/', (req, res) => {
+    res.send('posts homepage')
+})
+
+// routerPosts.get('/:id', (req, res) => {
+//     res.send(store.find('post', req.params.id).then((post) => post))
 // })
-// app.get('/:id', async function (req, res) {
-//     res.send(await store.find('post', req.params.id));
-// })
-// .put('/:id', async function (req, res) {
-//     res.send(await store.update('post', req.params.id, req.body));
-// })
-// .delete('/:id', async function (req, res) {
-//     res.send(await store.destroy('post', req.params.id));
-// });
+/*
+routerPosts.get('/:id', async function (req, res) {
+    res.send(await store.find('post', req.params.id));
+})
+routerPosts.post('/', async function (req, res) {
+    res.send(await store.create('post', req.body));
+})
+routerPosts.get('/:id', async function (req, res) {
+    res.send(await store.find('post', req.params.id));
+})
+routerPosts.put('/:id', async function (req, res) {
+    res.send(await store.update('post', req.params.id, req.body));
+})
+routerPosts.delete('/:id', async function (req, res) {
+    res.send(await store.destroy('post', req.params.id));
+})
+
+ */
+export {
+    routerPosts
+}

@@ -1,10 +1,5 @@
-# Created by .ignore support plugin (hsz.mobi)
-Будет удалено .idea/$CACHE_FILE$
-Будет удалено .idea/.gitignore
-Будет удалено .idea/jsdatatest.iml
-Будет удалено .idea/misc.xml
-Будет удалено .idea/modules.xml
-Будет удалено .idea/vcs.xml
-Будет удалено dev.global.env
-Будет удалено dev.local.pg.env
-Будет удалено node_modules/
+logfile
+
+.env
+
+node_modules/
