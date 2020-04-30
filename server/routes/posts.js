@@ -11,6 +11,8 @@ routerPosts.get('/', (req, res) => {
 //     res.send(store.find('post', req.params.id).then((post) => post))
 // })
 /*
+
+
 routerPosts.get('/:id', async function (req, res) {
     res.send(await store.find('post', req.params.id));
 })
