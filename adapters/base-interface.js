@@ -21,14 +21,14 @@ class BaseInterface {
     destroyMany(arrayIds){
         return new Error("Please implement destroyMany method!")
     }
-    connect(OPTIONS) {
+    init(OPTIONS, nameStore) {
         return new Error("Please implement connect method!")
     }
     getDb(dbName){
         return new Error("Please implement getDb method!")
     }
-    getCollection(nameCollection){
-        return new Error("Please implement getCollection method!")
+    getStore(nameStore){
+        return new Error("Please implement getStore method!")
     }
 }
 export{

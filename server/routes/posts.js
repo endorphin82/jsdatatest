@@ -4,7 +4,8 @@ import {store} from '../store'
 const routerPosts = express.Router();
 
 routerPosts.get('/', (req, res) => {
-    res.send('posts homepage')
+    res.sendFile(__dirname + '/pages/home.html')
+    // res.send('posts homepage')
 })
 
 // routerPosts.get('/:id', (req, res) => {
