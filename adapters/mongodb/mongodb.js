@@ -8,19 +8,14 @@ class MongoAdapter extends BaseInterface {
   }
 
   init(OPTIONS, nameStore) {
-    const mongoclient = new MongoClient(new Server(OPTIONS.HOSTDB, OPTIONS.PORTDB), { native_parser: true })
-    return mongoclient.connect(function(err, mongoclient) {
-      mongoclient.db(OPTIONS.NAMEDB)
-      const db = mongoclient.db(OPTIONS.NAMEDB)
-      console.log("(OPTIONS, nameStore)", OPTIONS, nameStore)
-      return db.collection(nameStore)
-      // return this.getStore(db, nameStore)
-      // const postsProm = posts.find({}).toArray()
-      // postsProm.then((res) => {
-      //   console.log(res)
-      // })
-    })
+    const mongoclient = new MongoClient(OPTIONS.URL)
+
+    return mongoclient
+      .connect()
+      .then(client => client.db(OPTIONS.NAMEDB))
+      .then(db => db.collection(nameStore))
   }
+
 }
 
 const adapter = new MongoAdapter()
