@@ -1,12 +1,25 @@
-import express from "express";
-import {store} from '../store'
+import express from "express"
+import { Store } from "../../stores"
+// import { OPTIONS } from "../index.js"
+export const OPTIONS = {
+  HOSTDB: process.env.HOSTDB || "127.0.0.1",
+  PORTDB: process.env.PORTDB || 27017,
+  NAMEDB: process.env.NAMEDB || "testdb",
+  URL: process.env.URL || "mongodb://127.0.0.1:27017/testdb"
+}
+console.log("router", OPTIONS)
+const routerPosts = express.Router()
 
-const routerPosts = express.Router();
+const store = new Store(OPTIONS, "posts")
 
-routerPosts.get('/', (req, res) => {
-    res.sendFile(__dirname + '/pages/home.html')
-    // res.send('posts homepage')
+routerPosts.get("/", (req, res) => {
+  store.findAll()
+    .then(result => res.send(result))
+  // res.sendFile(__dirname + '/pages/home.html')
 })
+
+// routerPosts.get('/').then((req, res) => res.send().then(store.findAll()))
+
 
 // routerPosts.get('/:id', (req, res) => {
 //     res.send(store.find('post', req.params.id).then((post) => post))
@@ -32,5 +45,5 @@ routerPosts.delete('/:id', async function (req, res) {
 
  */
 export {
-    routerPosts
+  routerPosts
 }
