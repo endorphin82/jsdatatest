@@ -1,12 +1,13 @@
-// import { adapter } from "../adapters"
-
 import { Adapter } from "../adapters"
 
 class BaseStoreInterface {
-  constructor(OPTIONS, nameStore){
-    this.store = new Adapter(OPTIONS, nameStore)
-      .init()
+  constructor(OPTIONS){
+    this.connection = new Adapter(OPTIONS)
+      .connect()
     console.log("Mongo Store created", this)
+  }
+  getDb(dbName){
+    return new Error("Please implement getDb method!")
   }
   find(firsName) {
     // валидация

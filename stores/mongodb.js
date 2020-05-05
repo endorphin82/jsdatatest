@@ -1,12 +1,28 @@
 import { BaseStoreInterface } from "./base-store-interface"
-import { Adapter, adapter } from "../adapters"
-import { OPTIONS } from "../server"
 
 export class Store extends BaseStoreInterface {
-  constructor(OPTIONS, nameStore) {
-    super(OPTIONS, nameStore)
+  constructor(OPTIONS) {
+    super(OPTIONS)
 
     console.log("Mongo Store created", this)
+  }
+
+  db
+  store
+
+  getDb(dbName) {
+    this.db = this.connection
+      .then(client => client.db(dbName)).then(database => database)
+    return this.db
+  }
+
+  getStore(nameStore) {
+    this.store = this.db
+      .then(db => db.collection(nameStore)).then(collection => {
+      console.log ("_setStore", collection)
+      })
+    // console.log("_setStore", this.store)
+    return this.store
   }
 
   findAll() {
