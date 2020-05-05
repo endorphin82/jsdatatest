@@ -1,5 +1,5 @@
 class BaseAdapterInterface {
-  init(OPTIONS, nameStore) {
+  connect(OPTIONS) {
     return new Error("Please implement connect method!")
   }
 }
